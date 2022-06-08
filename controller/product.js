@@ -28,31 +28,31 @@ const returnSingleProduct = async(req, res) => {
 }
 const createProduct = async(req, res) => {
 
-        let result = await product.create({
-            title: req.body.title,
-            price: req.body.price,
-            category: req.body.category,
-            image: req.body.image
-        });
-        res.status(201).json(result)
+    let result = await product.create({
+        title: req.body.title,
+        image: req.body.image,
+        category: req.body.category,
+        price: req.body.price
+    });
+    res.status(201).send(result)
 
 
-    }
-    // const updateProduct = async(req, res) => {
-    //     const { productID } = req.params;
+}
+const updateProduct = async(req, res) => {
+    const { productID } = req.params;
 
-//     let result = await product.findByIdAndUpdate(productID, req.body)
-//     res.json(result)
-
-
-
-// }
-
-
-// const deleteProduct = async(req, res) => {
-
-// }
+    let result = await product.findByIdAndUpdate(productID, req.body)
+    res.json(result)
 
 
 
-module.exports = { returnProducts, returnSingleProduct }
+}
+
+
+const deleteProduct = async(req, res) => {
+
+}
+
+
+
+module.exports = { returnProducts, returnSingleProduct, createProduct, updateProduct, deleteProduct }
